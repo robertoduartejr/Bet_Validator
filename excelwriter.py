@@ -1,12 +1,7 @@
-import datetime
-
 import xlsxwriter
 import datetime
 from datetime import datetime
 import os
-
-info = [['Heroes de Falcon', 'Rayo Zuliano', 'VENEZUELA: SEGUNDA DIVISÃO - DISPUTA DO TÍTULO - RODADA 4', False, 0, '0a0'],['Flamengo', 'São Paulo', 'BRASIL: COPA DO BRASIL - SEMIFINAIS', False, 23, '0a0 É Copa']]
-
 
 
 def create_file(info):
@@ -19,9 +14,6 @@ def create_file(info):
     outWorkbook = xlsxwriter.Workbook(file)
     outSheet = outWorkbook.add_worksheet()
 
-    #declare dataclasses
-    names = ["name1","name2","name3"]
-    values = [70,82,71]
     #write headers
     outSheet.write("A1","Time 1")
     outSheet.write("B1","Time 2")
@@ -39,7 +31,5 @@ def create_file(info):
         outSheet.write(i, 3, info[i - 1][4]) #flag
         outSheet.write(i, 4, info[i - 1][3]) #goals
         outSheet.write(i, 5, info[i - 1][5]) #criterio
-    outWorkbook.close()
-    os.system(f"start {file}")
-
-#create_file(info)
+    outWorkbook.close() #save file
+    os.system(f"start {file}") #open file

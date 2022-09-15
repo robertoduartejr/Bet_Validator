@@ -1,17 +1,12 @@
-
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import time
 from excelwriter import create_file
-from selenium.webdriver.support import expected_conditions as EC, wait
-
-
 
 driver = webdriver.Chrome()
 
+#opening the site and getting all the next games
 driver.get("https://www.flashscore.com.br/")
 time.sleep(0.5)
 tab_proximos_jogos = driver.find_element(By.XPATH, '//*[@id="live-table"]/div[1]/div[1]/div[5]')
@@ -24,6 +19,7 @@ html_content = div_allgames.get_attribute('outerHTML')
 soup = BeautifulSoup(html_content,'html.parser')
 jogos_validos = []
 
+#function to define the games to bet according to method 1
 def game_analysis():
     jogos_validos = []
     times = []
@@ -88,7 +84,7 @@ def game_analysis():
 
     return jogos_validos
 
-
+#function to define the games to bet according to method 2
 def game_analysis_improved_max():
     jogos_validos = []
     times = []
@@ -154,7 +150,7 @@ def game_analysis_improved_max():
     #print(jogos_validos)
     return jogos_validos
 
-
+#function to define the games to bet according to method 3
 def game_analysis_improved():
     jogos_validos = []
     times = []
@@ -226,26 +222,19 @@ def game_analysis_improved():
     return jogos_validos
 
 
-
-
-
-
-
-
-
-
-
-
-#loop to open all game pages
+#all games
 allgames = soup.find_all('div',class_='event__match--scheduled')
 
-original_window = driver.current_window_handle
+original_window = driver.current_window_handle #define the fist google chrome window so that I can make control
 assert len(driver.window_handles) == 1
+
+#loop to open all game pages
 for game in allgames:
     caminho = game.get('id')
-    button = driver.find_element(By.XPATH, f'//*[@id="{caminho}"]')
+    button = driver.find_element(By.XPATH, f'//*[@id="{caminho}"]') #click in each game
     driver.execute_script("arguments[0].click();", button) #a different way I found to click without geteting an error
 
+    #loop to change the window
     for window_handle in driver.window_handles:
         if window_handle != original_window:
             driver.switch_to.window(window_handle)
@@ -267,13 +256,11 @@ for game in allgames:
 
 
     time.sleep(1)
-    jogos_validos.append(game_analysis_improved_max()) #escolher qual método
+    jogos_validos.append(game_analysis_improved_max()) #define which method to use
     #time.sleep(3)
 
-    driver.close() #closing new open page
-    driver.switch_to.window(original_window)  #returning to the original page
+    driver.close() #closing new open window
+    driver.switch_to.window(original_window)  #returning to the original window
 
-
-    #print(jogos_validos)
-
+#calling function to create excel file and open it
 create_file(jogos_validos)
