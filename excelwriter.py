@@ -2,7 +2,7 @@ import xlsxwriter
 import datetime
 from datetime import datetime
 import os
-
+from datetime import date
 
 def create_file(info):
 #create file (workbook) and worksheet
@@ -21,6 +21,7 @@ def create_file(info):
     outSheet.write("D1","Goals")
     outSheet.write("E1","Flag")
     outSheet.write("F1","Criterio")
+    outSheet.write("G1","Data")
 
     #write data fo files
     print(len(info))
@@ -31,5 +32,6 @@ def create_file(info):
         outSheet.write(i, 3, info[i - 1][4]) #flag
         outSheet.write(i, 4, info[i - 1][3]) #goals
         outSheet.write(i, 5, info[i - 1][5]) #criterio
+        outSheet.write(i, 6, date.today())  # criterio
     outWorkbook.close() #save file
     os.system(f"start {file}") #open file
