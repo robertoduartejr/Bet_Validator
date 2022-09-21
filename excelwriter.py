@@ -38,13 +38,14 @@ def create_file(info):
         outSheet.write(i, 6, date.today())  # criterio
     outWorkbook.close() #save file
     os.system(f"start {file}") #open file
-    print("TAMANHO", len(info))
+
     #save data on database
     #firstly delete current data on database
     # objects = Jogos.objects.all()
     # for object in objects:
     #     object.delete()
 
+def writeondb(info):
     #deletar oq ta no BD
     objects = Jogos.objects.all()
     for object in objects:

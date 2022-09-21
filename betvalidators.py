@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import time
-from excelwriter import create_file
+from excelwriter import create_file, writeondb
 
 def betvalidator():
 
@@ -109,7 +109,7 @@ def betvalidator():
             #validar número minimo de jogos
             if over25_jogos[position_time1] < num_jogos or over25_jogos[position_time2] < num_jogos:
                 validator[3] = False
-                erro = erro + " " + "Numero de jogos NOK |"
+                erro = erro + " " + "Numero de jogos mínimo NOK |"
 
 
             if time1_over25_validator <= media_casa_over25 or time2_over25_validator < media_fora_over25:
@@ -144,21 +144,21 @@ def betvalidator():
 
         if False in validator:
             if validator[0] == False:
-                erro = "Teve 0a0 nos últimos 5 jogos |"
+                erro = "Teve 0a0 recentemente |"
             if validator[1] == False:
-                erro = erro + " " + "Liga Inválida |"
+                erro = erro + " " + "Liga sem Padrão |"
             if validator[2] == False:
-                erro = erro + " " + "É Copa |"
+                erro = erro + " " + "Não é liga |"
             if validator[3] == False:
-                erro = erro + " " + "Over 2.5 não atingido |"
+                erro = erro + " " + "Baixa frequencia de jogos ocm muitos gols |"
             if validator[4] == False:
-                erro = erro + " " + "Media de 1.5 não atingida |"
+                erro = erro + " " + "Media de gols por jogo baixa |"
             if validator[5] == False:
                 erro = erro + " " + "a definir |"
 
             jogos_validos = [times[0], times[1], liga, False, sum_of_goals, erro]
         else:
-            jogos_validos = [times[0], times[1], liga, True,sum_of_goals, "Passou"]
+            jogos_validos = [times[0], times[1], liga, True,sum_of_goals, "Aprovado"]
             pass  # colocar aqui que é um jogo valido no excel, os nomes do time, competição
 
         return jogos_validos
@@ -198,7 +198,7 @@ def betvalidator():
                     games_less_than_2 = games_less_than_2 + 1
                 if games_less_than_2 > 1:
                     validator[0] = False
-                    erro = erro + " " + "Mais de 1 1x0|"
+                    erro = erro + " " + "Muitos jogos de 1x0 recentemente |"
         except:
             validator[0] = False
 
@@ -255,7 +255,7 @@ def betvalidator():
             # validar número minimo de jogos
             if over25_jogos[position_time1] < num_jogos or over25_jogos[position_time2] < num_jogos:
                 validator[3] = False
-                erro = erro + " " + "Numero de jogos NOK |"
+                erro = erro + " " + "Numero de jogos mínimo NOK |"
 
 
             if time1_over25_validator <= media_casa_over25 or time2_over25_validator < media_fora_over25:
@@ -299,20 +299,20 @@ def betvalidator():
 
         if False in validator:
             if validator[0] == False:
-                erro = "Teve 0a0 nos últimos 5 jogos |"
+                erro = "Teve 0a0 recentemente |"
             if validator[1] == False:
-                erro = erro + " " + "Liga Inválida |"
+                erro = erro + " " + "Liga sem Padrão |"
             if validator[2] == False:
-                erro = erro + " " + "É Copa |"
+                erro = erro + " " + "Não é liga |"
             if validator[3] == False:
-                erro = erro + " " + "Over 2.5 não atingido |"
+                erro = erro + " " + "Baixa frequencia de jogos ocm muitos gols |"
             if validator[4] == False:
-                erro = erro + " " + "Media de 1.5 não atingida |"
+                erro = erro + " " + "Media de gols por jogo baixa |"
             if validator[5] == False:
                 erro = erro + " " + "a definir |"
             jogos_validos = [times[0], times[1], liga, False, sum_of_goals, erro]
         else:
-            jogos_validos = [times[0], times[1], liga, True,sum_of_goals, "Passou"]
+            jogos_validos = [times[0], times[1], liga, True,sum_of_goals, "Aprovado"]
             pass  # colocar aqui que é um jogo valido no excel, os nomes do time, competição
 
         return jogos_validos
@@ -380,3 +380,4 @@ def betvalidator():
         count = count + 1
     #calling function to create excel file and open it
     create_file(jogos_validos)
+    writeondb(jogos_validos)
