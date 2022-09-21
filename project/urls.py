@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework import routers
 from bets.api import viewsets as jogosviewsets
 
+
 route = routers.DefaultRouter()
 route.register(r'jogos',jogosviewsets.JogosViewSet, basename="Jogos")
 
