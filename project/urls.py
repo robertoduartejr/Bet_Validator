@@ -24,5 +24,5 @@ route.register(r'jogos',jogosviewsets.JogosViewSet, basename="Jogos")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/jogos',include(route.urls))
+    path('api',include(route.urls))
 ]
