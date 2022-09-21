@@ -370,7 +370,7 @@ def betvalidator():
 
 
             time.sleep(0.5)
-            jogos_validos.append(game_analysis()) #define which method to use
+            jogos_validos.append(game_analysis_improved()) #define which method to use
             #time.sleep(3)
 
             driver.close() #closing new open window
