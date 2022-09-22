@@ -9,8 +9,8 @@ class JogosViewSet(viewsets.ModelViewSet):
     queryset = models.Jogos.objects.all()
     http_method_names = ['get'] #pra aparecer apenas o get
 
-    # def callscraping(self):
-    #     betvalidators.betvalidator()
-    #     for i in range(20):
-    #         print(i)
-    #         time.sleep(1)
+    def callscraping(self):
+        betvalidators.betvalidator()
+        for i in range(20):
+            print(i,"ESTILO ROBERTI")
+            time.sleep(1)

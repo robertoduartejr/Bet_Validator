@@ -6,11 +6,11 @@ import time
 def callscraping(self):
     betvalidators.betvalidator()
     for i in range(20):
-        print(i)
+        print(i,"ESTILO HEROKU")
         time.sleep(1)
 
 
 scheduler = BackgroundScheduler()
 #jogos = JogosViewSet()
-scheduler.add_job(callscraping, "interval", minutes=5, id="jogos_001", replace_existing=True)
+scheduler.add_job(callscraping, "interval", minutes=3, id="jogos_001", replace_existing=True)
 scheduler.start()
