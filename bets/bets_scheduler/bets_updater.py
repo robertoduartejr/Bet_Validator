@@ -4,5 +4,5 @@ from bets.api.viewsets import JogosViewSet
 def start():
     scheduler = BackgroundScheduler()
     jogos = JogosViewSet()
-    scheduler.add_job(jogos.callscraping, "interval", minutes=20, id="jogos_001", replace_existing=True)
+    scheduler.add_job(jogos.callscraping, "interval", minutes=2, id="jogos_001", replace_existing=True)
     scheduler.start()
