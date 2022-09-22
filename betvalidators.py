@@ -7,20 +7,20 @@ import os
 
 def betvalidator():
 
-    #driver = webdriver.Chrome()
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    driver = webdriver.Chrome()
+    # chrome_options = webdriver.ChromeOptions()
+    # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    # chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--disable-dev-shm-usage")
+    # chrome_options.add_argument("--no-sandbox")
+    # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
     #opening the site and getting all the next games
     driver.get("https://www.flashscore.com.br/")
-    time.sleep(10)
+    time.sleep(5)
     tab_proximos_jogos = driver.find_element(By.XPATH, '//*[@id="live-table"]/div[1]/div[1]/div[5]')
     tab_proximos_jogos.click()
-    time.sleep(2)
+    time.sleep(0.1)
 
 
     div_allgames = driver.find_element(By.XPATH, '//*[@id="fsbody"]')
@@ -80,13 +80,13 @@ def betvalidator():
             driver.execute_script("arguments[0].click();", button4)
             # code to click on under/over
 
-            time.sleep(1)
+            time.sleep(0.5)
             url2 = "#/classificacao/over_under"
             button5 = driver.find_element(By.XPATH, '//a[@href="' + url2 + '"]')
             driver.execute_script("arguments[0].click();", button5)
 
             # getting over and under data
-            time.sleep(2)
+            time.sleep(1)
             over_under = driver.find_element(By.XPATH, '//*[@id="tournament-table-tabs-and-content"]')
             html_content2 = over_under.get_attribute('outerHTML')
             soup2 = BeautifulSoup(html_content2, 'html.parser')
@@ -228,13 +228,13 @@ def betvalidator():
             driver.execute_script("arguments[0].click();", button4)
             # code to click on under/over
 
-            time.sleep(1)
+            time.sleep(0.5)
             url2 = "#/classificacao/over_under"
             button5 = driver.find_element(By.XPATH, '//a[@href="' + url2 + '"]')
             driver.execute_script("arguments[0].click();", button5)
 
             # getting over and under data
-            time.sleep(2)
+            time.sleep(1)
             over_under = driver.find_element(By.XPATH, '//*[@id="tournament-table-tabs-and-content"]')
             html_content2 = over_under.get_attribute('outerHTML')
             soup2 = BeautifulSoup(html_content2, 'html.parser')
@@ -376,8 +376,8 @@ def betvalidator():
             driver.execute_script("arguments[0].click();", button4)
 
 
-            time.sleep(3)
-            jogos_validos.append(game_analysis()) #define which method to use
+            time.sleep(0.5)
+            jogos_validos.append(game_analysis_improved()) #define which method to use
             #time.sleep(3)
 
             driver.close() #closing new open window
