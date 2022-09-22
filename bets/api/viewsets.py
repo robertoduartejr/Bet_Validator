@@ -10,7 +10,7 @@ class JogosViewSet(viewsets.ModelViewSet):
     http_method_names = ['get'] #pra aparecer apenas o get
 
     def callscraping(self):
-        #betvalidators.betvalidator()
-        for i in range(20):
-            print(i)
-            time.sleep(1)
+        betvalidators.betvalidator()
+        # for i in range(20):
+        #     print(i)
+        #     time.sleep(1)
