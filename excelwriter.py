@@ -51,7 +51,6 @@ def writeondb(info):
     for object in objects:
         object.delete()
 
-
     for i in range(len(info)):
         b = Jogos(mandante=info[i][0], visitante=info[i][1], liga=info[i][2], goals_last5=info[i][4], approved=info[i][3], approve_details=info[i][5])
         b.save()

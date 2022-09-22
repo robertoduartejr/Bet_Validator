@@ -370,7 +370,7 @@ def betvalidator():
 
 
             time.sleep(0.5)
-            jogos_validos.append(game_analysis_improved()) #define which method to use
+            jogos_validos.append(game_analysis()) #define which method to use
             #time.sleep(3)
 
             driver.close() #closing new open window
@@ -379,5 +379,6 @@ def betvalidator():
             pass
         count = count + 1
     #calling function to create excel file and open it
-    create_file(jogos_validos)
-    writeondb(jogos_validos)
+    if jogos_validos is not None:
+        create_file(jogos_validos)
+        writeondb(jogos_validos)

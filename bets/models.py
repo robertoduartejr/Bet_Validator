@@ -14,4 +14,4 @@ class Jogos(models.Model):
     consolidado = models.JSONField(null=True)
 
     def __str__(self):
-        return f'{self.consolidado}'
+        return f'{self.mandante} vS {self.visitante}'
