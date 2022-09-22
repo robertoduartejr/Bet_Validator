@@ -11,6 +11,6 @@ def callscraping(self):
 
 
 scheduler = BackgroundScheduler()
-jogos = JogosViewSet()
-scheduler.add_job(jogos.callscraping, "interval", minutes=5, id="jogos_001", replace_existing=True)
+#jogos = JogosViewSet()
+scheduler.add_job(callscraping, "interval", minutes=5, id="jogos_001", replace_existing=True)
 scheduler.start()
