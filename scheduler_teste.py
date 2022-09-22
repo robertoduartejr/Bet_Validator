@@ -1,16 +1,8 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from bets.api.viewsets import JogosViewSet
-import betvalidators
-import time
-
-def callscraping(self):
-    betvalidators.betvalidator()
-    for i in range(20):
-        print(i,"ESTILO HEROKU")
-        time.sleep(1)
 
 
 scheduler = BackgroundScheduler()
-#jogos = JogosViewSet()
-scheduler.add_job(callscraping, "interval", minutes=3, id="jogos_001", replace_existing=True)
+jogos = JogosViewSet()
+scheduler.add_job(jogos.callscraping2, "interval", minutes=3, id="jogos_002", replace_existing=True)
 scheduler.start()
