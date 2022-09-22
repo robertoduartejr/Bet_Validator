@@ -1,5 +1,13 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from bets.api.viewsets import JogosViewSet
+import betvalidators
+import time
+
+def callscraping(self):
+    betvalidators.betvalidator()
+    for i in range(20):
+        print(i)
+        time.sleep(1)
 
 
 scheduler = BackgroundScheduler()
