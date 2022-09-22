@@ -11,12 +11,3 @@ class JogosViewSet(viewsets.ModelViewSet):
 
     def callscraping(self):
         betvalidators.betvalidator()
-        for i in range(20):
-            print(i,"ESTILO ROBERTI")
-            time.sleep(1)
-
-    def callscraping2(self):
-        betvalidators.betvalidator()
-        for i in range(20):
-            print(i,"ESTILO HEROKU")
-            time.sleep(1)
