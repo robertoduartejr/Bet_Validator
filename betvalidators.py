@@ -17,7 +17,7 @@ def betvalidator():
 
     #opening the site and getting all the next games
     driver.get("https://www.flashscore.com.br/")
-    time.sleep(5)
+    time.sleep(20)
     tab_proximos_jogos = driver.find_element(By.XPATH, '//*[@id="live-table"]/div[1]/div[1]/div[5]')
     tab_proximos_jogos.click()
     time.sleep(0.1)
@@ -387,5 +387,5 @@ def betvalidator():
         count = count + 1
     #calling function to create excel file and open it
     if jogos_validos is not None:
-        #create_file(jogos_validos)
+        create_file(jogos_validos)
         writeondb(jogos_validos)
