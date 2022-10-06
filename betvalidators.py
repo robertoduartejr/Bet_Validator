@@ -334,13 +334,14 @@ def betvalidator():
     accept2 = driver.find_element(By.XPATH,'//*[@id="onetrust-pc-sdk"]/div[3]/div[1]/button[2]') #accept cookies 2
     accept2.click()
     time.sleep(1)
-    #laço para abrir todos os jogos escondidos.
-    while i:
-        try:
-            teste = driver.find_element(By.XPATH,"//*[@title='Exibir todos os jogos desta competição!']")
-            teste.click()
-        except:
-            break
+    #laço para abrir todos os jogos escondidos...
+    #teste
+    # while i:
+    #     try:
+    #         teste = driver.find_element(By.XPATH,"//*[@title='Exibir todos os jogos desta competição!']")
+    #         teste.click()
+    #     except:
+    #         break
 
     #after open hidden games I can open all games below
 
